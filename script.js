@@ -1,95 +1,82 @@
-// ==========================
-// TYPING TEXT
-// ==========================
+// ==============================
+// Typed Text
+// ==============================
 
 new Typed(".typing", {
     strings: [
-        "Frontend Developer",
         "AI Engineer",
+        "Frontend Developer",
         "Web Developer",
-        "React Developer",
-        "Python Developer",
-        "Machine Learning Enthusiast"
+        "Computer Science Student"
     ],
-    typeSpeed: 80,
-    backSpeed: 50,
+    typeSpeed: 70,
+    backSpeed: 40,
     backDelay: 1500,
     loop: true
 });
 
-// ==========================
-// SCROLL PROGRESS BAR
-// ==========================
-
-window.addEventListener("scroll", () => {
-
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-
-    const progress = (scrollTop / scrollHeight) * 100;
-
-    document.querySelector(".progress").style.width = progress + "%";
-
-});
-
-// ==========================
-// CUSTOM CURSOR
-// ==========================
-
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", (e) => {
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
-
-// ==========================
-// DARK MODE
-// ==========================
+// ==============================
+// Theme Toggle
+// ==============================
 
 const themeBtn = document.getElementById("themeBtn");
-
-let dark = true;
+const icon = themeBtn.querySelector("i");
 
 themeBtn.addEventListener("click", () => {
 
-    if (dark) {
+    document.body.classList.toggle("light");
 
-        document.documentElement.style.setProperty("--bg", "#F8FAFC");
-        document.documentElement.style.setProperty("--white", "#111827");
-        document.documentElement.style.setProperty("--gray", "#374151");
-
-        document.body.style.background = "#F8FAFC";
-        document.body.style.color = "#111827";
-
-        themeBtn.innerHTML =
-            '<i class="fa-solid fa-sun"></i>';
-
+    if (document.body.classList.contains("light")) {
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
     } else {
-
-        document.documentElement.style.setProperty("--bg", "#030712");
-        document.documentElement.style.setProperty("--white", "#F8FAFC");
-        document.documentElement.style.setProperty("--gray", "#94A3B8");
-
-        document.body.style.background = "#030712";
-        document.body.style.color = "#F8FAFC";
-
-        themeBtn.innerHTML =
-            '<i class="fa-solid fa-moon"></i>';
-
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
     }
+});
 
-    dark = !dark;
+// ==============================
+// Scroll Progress Bar
+// ==============================
+
+const progress = document.querySelector(".progress");
+
+window.addEventListener("scroll", () => {
+
+    const scrollTop = window.scrollY;
+
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    const percent = (scrollTop / height) * 100;
+
+    progress.style.width = percent + "%";
+});
+
+// ==============================
+// Smooth Scroll
+// ==============================
+
+document.querySelectorAll('nav a').forEach(link => {
+
+    link.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        target.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
 
 });
 
-// ==========================
-// ACTIVE NAV LINK
-// ==========================
+// ==============================
+// Active Navbar Link
+// ==============================
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav ul li a");
@@ -98,93 +85,118 @@ window.addEventListener("scroll", () => {
 
     let current = "";
 
-    sections.forEach((section) => {
+    sections.forEach(section => {
 
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.clientHeight;
+        const top = section.offsetTop - 120;
 
-        if (pageYOffset >= sectionTop) {
-
+        if (pageYOffset >= top) {
             current = section.getAttribute("id");
-
         }
 
     });
 
-    navLinks.forEach((link) => {
+    navLinks.forEach(link => {
 
         link.classList.remove("active");
 
         if (link.getAttribute("href") === "#" + current) {
-
             link.classList.add("active");
-
         }
 
     });
 
 });
 
-// ==========================
-// SCROLL REVEAL
-// ==========================
+// ==============================
+// Custom Cursor
+// ==============================
 
-const revealItems = document.querySelectorAll(
-    ".project,.box,.skills div,.certificate span"
-);
+const cursor = document.querySelector(".cursor");
 
-function reveal() {
+window.addEventListener("mousemove", e => {
 
-    revealItems.forEach((item) => {
-
-        const windowHeight = window.innerHeight;
-        const top = item.getBoundingClientRect().top;
-
-        if (top < windowHeight - 80) {
-
-            item.style.opacity = "1";
-            item.style.transform = "translateY(0)";
-
-        }
-
-    });
-
-}
-
-revealItems.forEach((item) => {
-
-    item.style.opacity = "0";
-    item.style.transform = "translateY(40px)";
-    item.style.transition = "all .7s ease";
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
 
 });
 
-window.addEventListener("scroll", reveal);
+// ==============================
+// Reveal Animation
+// ==============================
 
-reveal();
+const observer = new IntersectionObserver(entries => {
 
-// ==========================
-// SMOOTH SCROLL
-// ==========================
+    entries.forEach(entry => {
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        if (entry.isIntersecting) {
 
-    anchor.addEventListener("click", function (e) {
-
-        e.preventDefault();
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (target) {
-
-            target.scrollIntoView({
-
-                behavior: "smooth"
-
-            });
+            entry.target.classList.add("show");
 
         }
 
     });
+
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll("section").forEach(section => {
+
+    section.classList.add("hidden");
+
+    observer.observe(section);
+
+});
+
+// ==============================
+// Button Ripple Effect
+// ==============================
+
+document.querySelectorAll("button,.btn1,.btn2").forEach(btn => {
+
+    btn.addEventListener("click", function (e) {
+
+        const circle = document.createElement("span");
+
+        const diameter = Math.max(this.clientWidth, this.clientHeight);
+
+        circle.style.width = diameter + "px";
+        circle.style.height = diameter + "px";
+
+        circle.style.left =
+            e.clientX - this.getBoundingClientRect().left - diameter / 2 + "px";
+
+        circle.style.top =
+            e.clientY - this.getBoundingClientRect().top - diameter / 2 + "px";
+
+        circle.classList.add("ripple");
+
+        const ripple = this.querySelector(".ripple");
+
+        if (ripple) ripple.remove();
+
+        this.appendChild(circle);
+
+    });
+
+});
+
+// ==============================
+// Navbar Shadow
+// ==============================
+
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+
+        header.classList.add("sticky");
+
+    } else {
+
+        header.classList.remove("sticky");
+
+    }
 
 });
