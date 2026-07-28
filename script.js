@@ -2,38 +2,42 @@
 // Typed Text
 // ==============================
 
-new Typed(".typing", {
-    strings: [
-        "AI Engineer",
-        "Frontend Developer",
-        "Web Developer",
-        "Computer Science Student"
-    ],
-    typeSpeed: 70,
-    backSpeed: 40,
-    backDelay: 1500,
-    loop: true
-});
+if (document.querySelector(".typing")) {
+    new Typed(".typing", {
+        strings: [
+            "AI Engineer",
+            "Frontend Developer",
+            "Web Developer",
+            "Computer Science Student"
+        ],
+        typeSpeed: 70,
+        backSpeed: 40,
+        backDelay: 1500,
+        loop: true
+    });
+}
 
 // ==============================
 // Theme Toggle
 // ==============================
 
 const themeBtn = document.getElementById("themeBtn");
-const icon = themeBtn.querySelector("i");
 
-themeBtn.addEventListener("click", () => {
+if (themeBtn) {
+    const icon = themeBtn.querySelector("i");
 
-    document.body.classList.toggle("light");
+    themeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("light");
 
-    if (document.body.classList.contains("light")) {
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
-    } else {
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
-    }
-});
+        if (icon) {
+            if (document.body.classList.contains("light")) {
+                icon.classList.replace("fa-moon", "fa-sun");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+            }
+        }
+    });
+}
 
 // ==============================
 // Scroll Progress Bar
@@ -42,15 +46,14 @@ themeBtn.addEventListener("click", () => {
 const progress = document.querySelector(".progress");
 
 window.addEventListener("scroll", () => {
+    if (!progress) return;
 
     const scrollTop = window.scrollY;
-
     const height =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
 
     const percent = (scrollTop / height) * 100;
-
     progress.style.width = percent + "%";
 });
 
@@ -58,17 +61,19 @@ window.addEventListener("scroll", () => {
 // Smooth Scroll
 // ==============================
 
-document.querySelectorAll('nav a').forEach(link => {
+document.querySelectorAll("nav a").forEach(link => {
 
     link.addEventListener("click", function (e) {
 
-        e.preventDefault();
-
         const target = document.querySelector(this.getAttribute("href"));
 
-        target.scrollIntoView({
-            behavior: "smooth"
-        });
+        if (target) {
+            e.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
 
     });
 
@@ -89,7 +94,7 @@ window.addEventListener("scroll", () => {
 
         const top = section.offsetTop - 120;
 
-        if (pageYOffset >= top) {
+        if (window.scrollY >= top) {
             current = section.getAttribute("id");
         }
 
@@ -113,12 +118,16 @@ window.addEventListener("scroll", () => {
 
 const cursor = document.querySelector(".cursor");
 
-window.addEventListener("mousemove", e => {
+if (cursor) {
 
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
+    window.addEventListener("mousemove", e => {
 
-});
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+
+    });
+
+}
 
 // ==============================
 // Reveal Animation
@@ -129,9 +138,7 @@ const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
 
         if (entry.isIntersecting) {
-
             entry.target.classList.add("show");
-
         }
 
     });
@@ -143,16 +150,15 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll("section").forEach(section => {
 
     section.classList.add("hidden");
-
     observer.observe(section);
 
 });
 
 // ==============================
-// Button Ripple Effect
+// Ripple Effect
 // ==============================
 
-document.querySelectorAll("button,.btn1,.btn2").forEach(btn => {
+document.querySelectorAll("button, .btn1, .btn2").forEach(btn => {
 
     btn.addEventListener("click", function (e) {
 
@@ -173,7 +179,9 @@ document.querySelectorAll("button,.btn1,.btn2").forEach(btn => {
 
         const ripple = this.querySelector(".ripple");
 
-        if (ripple) ripple.remove();
+        if (ripple) {
+            ripple.remove();
+        }
 
         this.appendChild(circle);
 
@@ -182,21 +190,21 @@ document.querySelectorAll("button,.btn1,.btn2").forEach(btn => {
 });
 
 // ==============================
-// Navbar Shadow
+// Sticky Header
 // ==============================
 
 const header = document.querySelector("header");
 
-window.addEventListener("scroll", () => {
+if (header) {
 
-    if (window.scrollY > 50) {
+    window.addEventListener("scroll", () => {
 
-        header.classList.add("sticky");
+        if (window.scrollY > 50) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
 
-    } else {
+    });
 
-        header.classList.remove("sticky");
-
-    }
-
-});
+}
