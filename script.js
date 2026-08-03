@@ -189,10 +189,6 @@ document.querySelectorAll("button, .btn1, .btn2").forEach(btn => {
 
 });
 
-// ==============================
-// Sticky Header
-// ==============================
-
 const header = document.querySelector("header");
 
 if (header) {
