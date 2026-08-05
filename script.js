@@ -79,7 +79,9 @@ document.querySelectorAll("nav a").forEach(link => {
 
 });
 
-
+// ==============================
+// Active Navbar Link
+// ==============================
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav ul li a");
@@ -110,6 +112,9 @@ window.addEventListener("scroll", () => {
 
 });
 
+// ==============================
+// Custom Cursor
+// ==============================
 
 const cursor = document.querySelector(".cursor");
 
@@ -124,6 +129,9 @@ if (cursor) {
 
 }
 
+// ==============================
+// Reveal Animation
+// ==============================
 
 const observer = new IntersectionObserver(entries => {
 
@@ -146,7 +154,9 @@ document.querySelectorAll("section").forEach(section => {
 
 });
 
-
+// ==============================
+// Ripple Effect
+// ==============================
 
 document.querySelectorAll("button, .btn1, .btn2").forEach(btn => {
 
