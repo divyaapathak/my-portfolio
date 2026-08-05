@@ -1,3 +1,6 @@
+// ==============================
+// Typed Text
+// ==============================
 
 if (document.querySelector(".typing")) {
     new Typed(".typing", {
@@ -13,6 +16,10 @@ if (document.querySelector(".typing")) {
         loop: true
     });
 }
+
+// ==============================
+// Theme Toggle
+// ==============================
 
 const themeBtn = document.getElementById("themeBtn");
 
