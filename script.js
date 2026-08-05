@@ -39,10 +39,6 @@ if (themeBtn) {
     });
 }
 
-// ==============================
-// Scroll Progress Bar
-// ==============================
-
 const progress = document.querySelector(".progress");
 
 window.addEventListener("scroll", () => {
