@@ -146,9 +146,7 @@ document.querySelectorAll("section").forEach(section => {
 
 });
 
-// ==============================
-// Ripple Effect
-// ==============================
+
 
 document.querySelectorAll("button, .btn1, .btn2").forEach(btn => {
 
