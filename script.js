@@ -53,9 +53,7 @@ window.addEventListener("scroll", () => {
     progress.style.width = percent + "%";
 });
 
-// ==============================
-// Smooth Scroll
-// ==============================
+
 
 document.querySelectorAll("nav a").forEach(link => {
 
