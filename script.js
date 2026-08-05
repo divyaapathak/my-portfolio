@@ -1,6 +1,4 @@
-// ==============================
-// Typed Text
-// ==============================
+
 
 if (document.querySelector(".typing")) {
     new Typed(".typing", {
