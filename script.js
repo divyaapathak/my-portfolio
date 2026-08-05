@@ -14,10 +14,6 @@ if (document.querySelector(".typing")) {
     });
 }
 
-// ==============================
-// Theme Toggle
-// ==============================
-
 const themeBtn = document.getElementById("themeBtn");
 
 if (themeBtn) {
