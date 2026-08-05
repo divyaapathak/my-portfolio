@@ -1,6 +1,4 @@
 
-// ==============================
-
 if (document.querySelector(".typing")) {
     new Typed(".typing", {
         strings: [
