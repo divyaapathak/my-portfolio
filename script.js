@@ -124,9 +124,6 @@ if (cursor) {
 
 }
 
-// ==============================
-// Reveal Animation
-// ==============================
 
 const observer = new IntersectionObserver(entries => {
 
