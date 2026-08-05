@@ -110,9 +110,6 @@ window.addEventListener("scroll", () => {
 
 });
 
-// ==============================
-// Custom Cursor
-// ==============================
 
 const cursor = document.querySelector(".cursor");
 
