@@ -79,9 +79,7 @@ document.querySelectorAll("nav a").forEach(link => {
 
 });
 
-// ==============================
-// Active Navbar Link
-// ==============================
+
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav ul li a");
